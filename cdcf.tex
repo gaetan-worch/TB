@@ -1,0 +1,52 @@
+\rowcolors{3}{gray!10}{white}
+\begin{longtable}{l|m{5cm}|m{5cm}}
+    \caption{Cahier des charges fonctionnel}\\
+    \hline \multicolumn{1}{c|}{\textbf{Fonction}} & \multicolumn{1}{c|}{\textbf{Énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{Éxigence}} \\ \hline 
+    \endfirsthead
+    
+    \multicolumn{3}{c}%
+    {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+    \hline \multicolumn{1}{c|}{\textbf{Fonction}} & \multicolumn{1}{c|}{\textbf{Énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{Éxigence}} \\ \hline 
+    \endhead
+    \hline \multicolumn{3}{r}{{Continued on next page}} \\ \hline
+    \endfoot
+    \hline \hline
+    \endlastfoot
+    FP $1$&\centering Manipuler des capsules de manière automatisée, sans les endommagées&\begin{itemize}
+            \item Ne pas détériorer la capsule
+        \end{itemize}\\
+        FP $1.1$&\centering Prélever les capsules dans une plaque& \begin{itemize}
+            \item Position de prise arbitraire
+            \item Contôler que la capsule soit saisie
+        \end{itemize}\\
+        FP $1.2$&\centering Déplacer les capsules&\\
+        FP $1.3$&\centering Déposer les capsules&\begin{itemize}
+            \item Position de dépose arbitraire
+        \end{itemize}\\
+        FP $2$&\centering Déterminer les capsules les plus adaptées pour chaque réacteur, selon une recette donnée&\\
+        FP $2.1$&\centering Recevoir la recette pour chaque réacteur&\\
+        FP $2.2$&\centering Accèder à la base de donnée du stock&\\
+        FP $2.3$&\centering Déterminer la combinaison de capsules optimal pour délivrer la masse de produit donné&\begin{itemize}
+            \item Précision dans la masse délivrée : $\pm ?$
+            \item Nombre maximale de capsules par vial : $5$
+        \end{itemize}\\
+        FP $2.4$&\centering Transmettre la position des capsules dans le stock et sur la plaque&\\
+        FP $2.5$&\centering Informer le stock des capsules prélevées&\\
+        FC $1$&\centering Respecter les dimensions de l'endroit confiner &Dimension de la boîte  : $\numproduct{133 x 95 x 94}~\unit{\cm}$\\
+        FC $2$&\centering Utiliser les énergies disponibles& \begin{itemize}
+            \item Électrique : \begin{itemize}
+                \item $\qty{400}{\volt}$ triphasé
+                \item $\qty{230}{\volt}$ monophasé
+            \end{itemize}
+            \item Pneumatique : $\qty{8}{\bar}$
+        \end{itemize}\\ 
+        FC $3$&\centering Utiliser les plaques déjà présente&\begin{itemize}
+            \item Nombre de trou sur la plaque de prise : $384$
+            \item Nombre de trou sur la plaque de dépose : $48$
+        \end{itemize}\\
+        FC $4$&\centering S'adapter aux éléments déjà présent&\begin{itemize}
+            \item API : Beckhoff
+        \end{itemize}\\
+        FC $5$&\centering Dimension des capsules : $\varnothing~\qty{3}{\mm}$&
+
+    \end{longtable}

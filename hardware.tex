@@ -1,6 +1,36 @@
 \section{Défis techniques du Hardware}
+Le hardware doit pouvoir manipuler des plaques de capsules ou de réacteurs, ainsi que des capsules de $\qty{3}{\mm}$ de diamètre en garantissant leur intégritées. Le tout doit être dans un espace confiner.
 \section{Recherches de solution}
-\subsection{Solutions proposées}
+Pour la recherche des solutions, le hardware à été décomposé par les fonctions suivantes : 
+\begin{itemize}
+    \item Saisie et dépose des microcapsules
+    \item Déplacement des microcapsules
+    \item Saisie et dépose des plaques
+\end{itemize} 
+La position des plaques dans la glove box à également été étudié avec $6$ configurations différente.
+\subsection{Saisie et dépose des microcapsules}
+Pour la saisie des microcapsules, les grande familles de solutions proposer sont : 
+\begin{itemize}
+    \item Aspiration
+    \item Mécanique \begin{itemize}
+        \item Pince à doigt
+        \item Pince Gecko
+    \end{itemize}
+\end{itemize}
+\subsubsection*{Avantage et inconvénients}
+\begin{table}[H]
+    \caption{Anvantages et inconvénients des solution de saisie des capsules}
+    \begin{tabular}{@{}cll@{}}
+    \toprule
+    Solution      & \multicolumn{1}{c}{Avantanges}                                                                                                   & \multicolumn{1}{c}{Inconvénient}                                                                                                                                  \\ \midrule
+    Aspiration    & \begin{tabular}[c]{@{}l@{}}- Exerce moins de pression directe \\ - Simple à installer\\ - Nécessite peu d'entretien\end{tabular} & \begin{tabular}[c]{@{}l@{}}- Apporter l'énergie pneumatique\\ - Bruyant\end{tabular}                                                                     \\
+    Pince à doigt & \begin{tabular}[c]{@{}l@{}}- Contrôle précis\\ - Faible coût\end{tabular}                                                        & \begin{tabular}[c]{@{}l@{}}- Maintenance fréquente\\ - Ne convient pas au petits objets\\ - Espace limité, pour pouvoir ouvrir \\ et fermer la pince \\ - Nécessite un contrôle de force\end{tabular} \\
+    Pince Gecko   & \begin{tabular}[c]{@{}l@{}}- Saisie non intrusive\\ - Ne nécessite pas de source \\ d'énergie externe\end{tabular}                            & \begin{tabular}[c]{@{}l@{}}- Capacité de charge\\ - Nécessite un nettoyage pour conserver \\  l'adhérence dans le temps\\ - Détachement complexe\end{tabular}     \\ \bottomrule
+    \end{tabular}
+\end{table}
+\subsection{Déplacement des microcapsules}
+\input{rechercheSolutHard/deplacementMicrocapsule.tex}
+
 \subsection{Analyse des solutions}
 \section{Présentation de la solution choisie}
 \section{Déscription du matériel utilisé}

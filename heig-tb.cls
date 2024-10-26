@@ -10,6 +10,8 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[main=french,english]{babel}
+\RequirePackage{colortbl}
+\RequirePackage[table]{xcolor}
 
 %% Confidentiel
 \DeclareOption{confidential}{
@@ -186,6 +188,8 @@
 
 \RequirePackage[fleqn]{amsmath}
 \RequirePackage[small,bf,textfont=it]{caption}
+\captionsetup[longtable]{position=bottom}
+\RequirePackage{subcaption}
 \RequirePackage{appendix}
 \RequirePackage{cellspace}
 \RequirePackage{color}
