@@ -1,31 +1,3 @@
-\section{Algorithme de recombinaison}
-\subsection{Spécification de l'algorithme}
-L'algorithme de recombinaison a pour objectif de maximiser le nombre de recettes réussies par batch toute, respectant les tolérances sur les quantités demandées.
- Pour chaque batch, comprenant environ $300$ recettes, il doit sélectionner les microcapsules disponibles dans le stock,
- en s'adaptant aux contraintes suivantes :
-\begin{itemize}
-    \item les capsules disponibles peuvent ne pas convenir à toutes les recettes,
-    \item les quantités demandées doivent être respectées avec une tolérance de $\pm 10\%$,
-    \item chaque réacteur peut contenir un maximum de $5$ capsules.
-\end{itemize}
-L'algorithme doit :
-\begin{enumerate}
-    \item Optimiser le nombre de recettes réalisées dans le batch.
-    \item Minimiser l'écart entre la quantité déposée et la quantité demandée pour chaque recette.
-    \item Minimiser les manipulations de plaques.
-\end{enumerate}
-Il possède, en entrée : 
-\begin{itemize}
-    \item les recettes du batch,
-    \item les microcapsules disponibles dans le stock.
-\end{itemize}
-
-La sortie contient : 
-\begin{itemize}
-    \item les plaques de stockage à utiliser,
-    \item la disposition des microcapsules sur les plaques,
-    \item les réacteurs dans lesquels les microcapsules doivent être placées,
-    \item les recettes non réalisables.
-\end{itemize}
-\subsection{Méthode d'optimisation et stratégie d'ordonnancement}
-\subsection{Interaction entre le logiciel et le matériel pour la recombinaison}
+\input{software/algorithme.tex}
+\include{software/robot}
+\section{Interaction entre le logiciel et le matériel pour la recombinaison}

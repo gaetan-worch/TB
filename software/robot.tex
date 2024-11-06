@@ -1,0 +1,21 @@
+\section{Robot}
+La programmation du robot est faite en deux parties, le robot contient les programmes de déplacement 
+tandis qu'un programme python s'occupera d'appeler les programmes et de transmettre les informations nécessaire au robot.
+Les paramères seront données au différents programmes grâce aux registres du robot.
+\subsection{Programmation du robot}
+\subsubsection{Outils}
+Le robot possède $2$ outils, une pince et un module d'aspiration, ces outils sont sur la même platforme, il n'est donc pas nécessaire de faire de changement d'outils, cependant, il est important de configurer les deux outils indépendanment dans le robot car leur TCP n'est pas au même endroit.
+\subsubsection{Programmes}
+Pour la recombinaison, le robot nécessite $3$ programmes différents :
+\begin{itemize}
+    \item PickAndPlaceVial(int lineVial, int columnVial, int lineReactor, int coumnReactor), qui permet de faire le déplacement des microcapsule de leur plaque jusqu'au réacteur;
+    \item TakePlate(bool isParadox), permettant de récupérer un plaque de réacteur ou de microcapsules;
+    \item GivePlate(bool isParadox), qui rendra les plaques qui ne sont plus nécessaire dans la glove box.
+\end{itemize}
+\subsubsection{Plans}
+\subsubsection{Sécurité}
+Afin que le robot ne rentre pas en colision avec les portes de la \textit{glove box}, il est nécessaire d'installer des limites, ces limites sont un plan que le TCP ne peut pas franchir.
+Chaque défaut sera écrit dans un registre afin de pouvoir transmettre les erreurs au programme python.
+\subsection{Communication avec le robot}
+Afin de communiquer avec le robot, l'utilisation de l'interface \textit{Real-Time Data Exchange} (RTDE), présent sur les robots d'Universal robot (UR), qui permet l'échange de données bidirectionnel en temps réel, entre le robot et le système externe. 
+L'utilisation de l'API \og{} dashboard\_client permet \fg{} de charger et de démarrer des programmes robot présent dans la mémoire ce dernier. Tandis que \og{} RTDIOInterface \fg{} permet d'écrire et de lire les entrées, sorties et registres du robot.

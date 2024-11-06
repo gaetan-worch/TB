@@ -48,4 +48,16 @@ Quant aux différent moyen de movoir les capsules, il y a :
 La dernière option nécessite des surface lisse, que le système soit en pente et le temps de déplacement n'est pas réglable. Les deux autres solutions ne se distingue pas vraiment pour l'instant car dans tous les cas, l'utilisation d'un moteur électrique est nécessaire.
 
 \subsection*{Déplacement à l'aide d'un robot}
-Pour le déplacement des capsules, seul les axes $T_x, T_y~\text{et}~T_z$ sont nécessaires. Un robot de type \textit{SCARA}, cyclindrique ou Delta peut correspondre.
+Pour le déplacement des capsules, seul les axes $T_x, T_y~\text{et}~T_z$ sont nécessaires. Un robot de type \textit{SCARA}, cyclindrique ou Delta peuvent correspondre.
+
+\subsection*{Avantanges et inconvénients}
+\begin{table}[H]
+    \caption{Anvantages et inconvénients des solution de saisie des capsules}
+    \begin{tabular}{@{}cll@{}}
+    \toprule
+    Solution      & \multicolumn{1}{c}{Avantanges}                                                                                                   & \multicolumn{1}{c}{Inconvénient}                                                                                                                                  \\ \midrule
+    Transport pneumatique par tube    & \begin{tabular}[c]{@{}l@{}}\end{tabular} & \begin{tabular}[c]{@{}l@{}}- Peu modulable\\ - Bruyant\\ - Aiguillage complexe\end{tabular}                                                                     \\
+    Convoyeur & \begin{tabular}[c]{@{}l@{}}- \\ - \end{tabular} & \begin{tabular}[c]{@{}l@{}}- Maintenance fréquente\\ - Ne convient pas au petits objets\\ - Espace limité, pour pouvoir ouvrir \\ et fermer la pince \\ - Nécessite un contrôle de force\end{tabular} \\
+    Robot   & \begin{tabular}[c]{@{}l@{}}- Place\\ - Modulable \\ \end{tabular}                            & \begin{tabular}[c]{@{}l@{}}- Coût\\ - Nécessite un nettoyage pour conserver \\  l'adhérence dans le temps\\ - Détachement complexe\end{tabular}     \\ \bottomrule
+    \end{tabular}
+\end{table}
