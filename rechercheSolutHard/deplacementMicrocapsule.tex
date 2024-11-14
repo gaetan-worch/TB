@@ -1,61 +1,65 @@
-Pour le déplacement des capsules de leur plaque jusqu'aux réacteurs, trois idées ont été étudiées : 
+Pour le déplacement des microcapsules de leur plaque jusqu'aux réacteurs, trois idées ont été étudiées : 
 \begin{itemize}
-    \item Transport pneumatique par tube,
-    \item convoyeur,
-    \item robot 
+    \item Transport pneumatique par tube;
+    \item convoyeur;
+    \item robot.
 \end{itemize}
 \subsection*{Transport pneumatique par tube}
-Le système de transport pneumatique par tube, serait de tuyaux dans lesquelles navigue les microcapsules grâce à une différence de pression de chaque coté de la microcapsule. Ce système est déja présent dans les hôpitaux et dans les grandes surfaces.
+Le système de transport pneumatique par tube\footnote{\href{https://fr.wikipedia.org/wiki/Tube_pneumatique}{Tube pneumatique - Wikipédia}}, serait des tuyaux dans lesquelles naviguent les microcapsules grâce à une différence de pression de chaque côté de la microcapsule. Ce système est déjà présent dans les hôpitaux et dans les grandes surfaces.
 \begin{figure}[h!]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_pneu/reseau_pneumatique_hopital.jpg} % Remplacez par le chemin de votre première image
-        \caption{Schéma d'un réseau de transport pneumatique}
+        \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_pneu/reseau_pneumatique_hopital.jpg}
+        \caption{Schéma d'un réseau de transport pneumatique\footnotemark}
     \end{subfigure}\hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_pneu/cartouche_transport_pneu.jpg} % Remplacez par le chemin de votre seconde image
-        \caption{Cartouche pneumatique}
+        \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_pneu/cartouche_transport_pneu.jpg}
+        \caption{Cartouche de transport\footnotemark}
     \end{subfigure}
     \caption{Exemples de réseau de transport pneumatique par tube}
 \end{figure}
-
+\footnotetext[1]{\href{https://www.transport-pneumatique.fr/transport-pneumatique-centres-hospitaliers/}{https://www.transport-pneumatique.fr/transport-pneumatique-centres-hospitaliers/}}
+\footnotetext[2]{\href{https://www.transport-pneumatique.fr/cartouches-pochettes/}{https://www.transport-pneumatique.fr/cartouches-pochettes/}}
 \subsection*{Transport par convoyeur}
-Pour déplacer les microcapsules, un convoyeur peut être utilisé, il faut néanmoins que le convoyeur soit adapter au microcapsule, un convoyeur à bande lisse ne fonctionnerais donc pas, mais une bande à tasseau ou un demi tube conviendrais parfaitement.
+Pour déplacer les microcapsules, un convoyeur peut être utilisé, il faut néanmoins que le convoyeur soit adapté au microcapsule, les microcapsules étant cyclindriques, elles risquerait de rouler sur un convoyeur à bande lisse, mais une bande à tasseau (\cf \autoref{img:convoyeur_bande_tasseau}) ou un demi-tube  (\cf \autoref{img:convoyeur_tube}) conviendraient parfaitement.
 \begin{figure}[h!]
     \centering
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_conv/convoyeur_tasseau.JPG}
-        \caption{Convoyeur avec bande à tasseaux}
+        \caption{Convoyeur avec bande à tasseaux\footnotemark}
+        \label{img:convoyeur_bande_tasseau}
     \end{subfigure}\hfill
     \begin{subfigure}{0.45\textwidth}
         \centering
         \includegraphics[width=\linewidth]{assets/figures/Hardware/transport_conv/convoyeur_tube.png}
-        \caption{Convoyeur à tube}
+        \caption{Convoyeur à tube\footnotemark}
+        \label{img:convoyeur_tube}
     \end{subfigure}
-    \caption{Convoyeurs}
+    \caption{Exemple de convoyeur}
 \end{figure}
-
-Quant aux différent moyen de movoir les capsules, il y a : 
+\footnotetext[2]{\href{https://fr.m.wikipedia.org/wiki/Convoyeur}{https://fr.m.wikipedia.org/wiki/Convoyeur}}
+\footnotetext[3]{\href{https://doser-compter.com/products/ligne-de-comptage-king}{https://doser-compter.com/products/ligne-de-comptage-king}}
+Quant aux différents moyens de mouvoir les microcapsules, il y a : 
 \begin{itemize}
-    \item les vibrations, 
-    \item le déplacement de la bande, 
+    \item les vibrations;
+    \item le déplacement de la bande;
     \item la gravité.
 \end{itemize}
 
-La dernière option nécessite des surface lisse, que le système soit en pente et le temps de déplacement n'est pas réglable. Les deux autres solutions ne se distingue pas vraiment pour l'instant car dans tous les cas, l'utilisation d'un moteur électrique est nécessaire.
+La dernière option nécessite des surface lisse, que le système soit en pente et le temps de déplacement n'est pas réglable. Les deux autres solutions ne se distinguent pas vraiment pour l'instant, car dans tous les cas, l'utilisation d'un moteur électrique est nécessaire.
 
 \subsection*{Déplacement à l'aide d'un robot}
-Pour le déplacement des capsules, seul les axes $T_x, T_y~\text{et}~T_z$ sont nécessaires. Un robot de type \textit{SCARA}, cyclindrique ou Delta peuvent correspondre.
+Pour le déplacement des microcapsules, seuls les axes $T_x, T_y~\text{et}~T_z$ sont nécessaires, soit $3$ degrés de liberté. Un robot de type \textit{SCARA}, cylindrique ou Delta peuvent correspondre.
 
-\subsection*{Avantanges et inconvénients}
+\subsection*{Avantages et inconvénients}
 \begin{table}[H]
-    \caption{Anvantages et inconvénients des solution de saisie des capsules}
+    \caption{Anvantages et inconvénients des solution de transport des microcapsules}
     \begin{tabular}{@{}cll@{}}
     \toprule
-    Solution      & \multicolumn{1}{c}{Avantanges}                                                                                                   & \multicolumn{1}{c}{Inconvénient}                                                                                                                                  \\ \midrule
+    Solution      & \multicolumn{1}{c}{Avatanges}                                                                                                   & \multicolumn{1}{c}{Inconvénient}                                                                                                                                  \\ \midrule
     Transport pneumatique par tube    & \begin{tabular}[c]{@{}l@{}}\end{tabular} & \begin{tabular}[c]{@{}l@{}}- Peu modulable\\ - Bruyant\\ - Aiguillage complexe\end{tabular}                                                                     \\
     Convoyeur & \begin{tabular}[c]{@{}l@{}}- \\ - \end{tabular} & \begin{tabular}[c]{@{}l@{}}- Maintenance fréquente\\ - Ne convient pas au petits objets\\ - Espace limité, pour pouvoir ouvrir \\ et fermer la pince \\ - Nécessite un contrôle de force\end{tabular} \\
     Robot   & \begin{tabular}[c]{@{}l@{}}- Place\\ - Modulable \\ \end{tabular}                            & \begin{tabular}[c]{@{}l@{}}- Coût\\ - Nécessite un nettoyage pour conserver \\  l'adhérence dans le temps\\ - Détachement complexe\end{tabular}     \\ \bottomrule

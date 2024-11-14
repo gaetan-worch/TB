@@ -219,7 +219,7 @@
 \RequirePackage{ifthen}
 \RequirePackage{expkv-cs}
 \RequirePackage[outputdir=build,chapter]{minted}
-
+\RequirePackage{svg}
 \RequirePackage[
   backref=true,
   backend=biber,

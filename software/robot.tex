@@ -1,46 +1,13 @@
-% \section{Robot}
-% La programmation du robot est faite en deux parties, le robot contient les programmes de déplacement 
-% tandis qu'un programme python s'occupera d'appeler les programmes et de transmettre les informations nécessaire au robot.
-% Les paramères seront données au différents programmes grâce aux registres du robot.
-% \subsection{Programmation du robot}
-% \subsubsection{Outils}
-% Le robot possède $2$ outils, une pince et un module d'aspiration, ces outils sont sur la même platforme, il n'est donc pas nécessaire de faire de changement d'outils, cependant, il est important de configurer les deux outils indépendanment dans le robot car leur TCP n'est pas au même endroit.
-% \subsubsection{Programmes}
-% Pour la recombinaison, le robot nécessite $3$ programmes différents :
-% \begin{itemize}
-%     \item PickAndPlaceVial(int lineVial, int columnVial, int lineReactor, int coumnReactor), qui permet de faire le déplacement des microcapsule de leur plaque jusqu'au réacteur;
-%     \item TakePlate(bool isParadox), permettant de récupérer un plaque de réacteur ou de microcapsules;
-%     \item GivePlate(bool isParadox), qui rendra les plaques qui ne sont plus nécessaire dans la glove box.
-% \end{itemize}
-% \subsubsection{Plans}
-% \subsubsection{Sécurité}
-% Afin que le robot ne rentre pas en colision avec les portes de la \textit{glove box}, il est nécessaire d'installer des limites, ces limites sont un plan que le TCP ne peut pas franchir.
-% Chaque défaut sera écrit dans un registre afin de pouvoir transmettre les erreurs au programme python.
-% \subsection{Communication avec le robot}
-% Afin de communiquer avec le robot, l'utilisation de l'interface \textit{Real-Time Data Exchange} (RTDE), présent sur les robots d'Universal robot (UR), qui permet l'échange de données bidirectionnel en temps réel, entre le robot et le système externe. 
-% L'utilisation de l'API \og{} dashboard\_client permet \fg{} de charger et de démarrer des programmes robot présent dans la mémoire ce dernier. Tandis que \og{} RTDIOInterface \fg{} permet d'écrire et de lire les entrées, sorties et registres du robot.
 \section{Robot}
 
 \subsection{Objectif}
-Le robot doit manipuler les microcapsules en effectuant des tâches de \textit{pick-and-place} depuis leur zone de stockage jusqu’aux réacteurs, en fonction des besoins de l'algorithme de recombinaison.
+Le robot doit manipuler les microcapsules en effectuant des tâches de \textit{pick and place} depuis leur zone de stockage jusqu'aux réacteurs. Il doit également être capable de manipuler des plaques de microcapsules et de \og{}Para-dox\fg{}.
 
 \subsection{Contraintes}
 \begin{enumerate}
     \item Respect des limites de la \textit{glove box} pour éviter toute collision;
     \item Gestion de deux outils (pince et module d'aspiration) sans changement manuel;
 \end{enumerate}
-
-\subsection{Entrées}
-Les informations nécessaires pour le contrôle du robot incluent :
-\begin{itemize}
-    \item les coordonnées des microcapsules et des réacteurs (ligne et colonne sur les plaques) ;
-\end{itemize}
-
-\subsection{Sorties}
-Les sorties du programme de contrôle du robot sont :
-\begin{itemize}
-    \item les informations d'état du robot et les erreurs enregistrées ;
-\end{itemize}
 
 \subsection{Méthode de programmation}
 La programmation est effectuée en deux parties :
@@ -49,8 +16,39 @@ La programmation est effectuée en deux parties :
     \item Un programme externe en Python appelle les fonctions du robot et transmet les informations nécessaires via l'interface RTDE (cf. \autoref{subsection:CommunicationRobot}).
 \end{itemize}
 
-\subsection{Sécurité}
-Des plans de sécurité sont configurés pour que le robot n'entre pas en collision avec les portes de la \textit{glove box}. Les erreurs sont enregistrées dans un registre pour être relayées au programme Python.
+\subsection{Outils}
+Les outils nécessaires pour réaliser la manipulation sont :
+\begin{itemize}
+    \item une pince pour saisir les \textit{well plate} et les plaques \og{}Para-dox\fg{};
+    \item un module pour l'aspiration des microcapsules.
+\end{itemize}
+Une pointe a également été fabriquée, pour faciliter la programmation des différents repères nécessaires.
 
+Pour ajouter les outils, il faut, pour chaque outil, connaître la position du TCP par rapport à la bride du robot, il faut également connaître son centre de masse et son poids.
+Il existe sur le robot, un programme permettant de récupérer toutes les informations nécessaires. Les trois outils ont été implémentés grâce à ce programme.
+
+
+\subsection{Sécurité}
+\subsubsection*{Limites de sécurité}
+Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites des sécurités sont nécessaires, une par porte de la \textit{glove box}.
+Pour définir ces limites, il faut :
+\begin{enumerate}
+    \item Définir un point en mettant l'outil perpendiculaire au plan souhaité.
+    \item Définir un plan de sécurité qui passe par ce point et qui sera normal à l'outil du robot.
+    \item Définir la sécurité à mettre en place (Normal, réduit, les deux ou mode de déclenchement réduit). Dans notre cas, nous ne voulons pas que le TCP dépasse ces plans, le mode \og{}les deux\fg{} doit donc être appliqué.
+\end{enumerate}
+
+\subsection{Repères de travail}
+Deux repères seront utilisés :
+\begin{itemize}
+    \item le repère de base qui sera utilisé pour déplacer les plaques;
+    \item le repère \og{}repPickAndPlace\fg{} (\cf \autoref{img:plan_pickandplace}), sera utilisé pour le déplacement des microcapsules.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth/2]{assets/figures/Hardware/plan/planPickAndPlace.jpeg}
+    \caption{Position physique du plan \og{}repPickAndPlace\fg{}}
+    \label{img:plan_pickandplace}
+\end{figure}
 \subsection{Communication avec le robot}\label{subsection:CommunicationRobot}
 L'interface \textit{Real-Time Data Exchange} (RTDE) permet l'échange bidirectionnel en temps réel des données entre le robot et le système externe, facilitant ainsi le démarrage des programmes robot et la lecture/écriture des registres nécessaires.

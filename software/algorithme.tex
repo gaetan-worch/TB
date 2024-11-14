@@ -11,24 +11,22 @@ Les contraintes de l'algorithme sont les suivantes :
         \item Respecter les quantités délivrées;
         \item respecter la quantité maximale de microcapsules de chaque réacteur.
     \end{itemize}    
-    \item Minimiser le nombre total de microcapsules utilisées.
     \item Minimiser le nombre de microcapsules utilisées par réacteur.
-    \item Réduire le temps d'exécution de la recombinaison.
 \end{enumerate}
 \subsection*{Entrées}
 Il possède en entrée : 
 \begin{itemize}
     \item les recettes du batch;
     \item la position et la quantité de produit des microcapsules disponibles dans le stock;
-    \item la tolérance du batch exprimée en pourcentage;
-    \item le nombre maximal de capsule par réacteur.
+    \item la tolérance des recettes;
+    \item le nombre maximal de microcapsule par réacteur.
 \end{itemize}
 
 \subsection*{Sorties}
 Les sorties de l'algorithme incluent : 
 \begin{itemize}
-    \item les numéros de plaque à utiliser et leur position dans le stockage;
-    \item la position des microcapsules sur les plaques (sous la forme \og{}ligne, colonne\fg{});
+    \item les numéros de plaque à utiliser;
+    \item la position des microcapsules sur les plaques (sous la forme \og{}ligne, colonne\fg{} );
     \item les coordonnées et les numéros d'identification des réacteurs dans lesquels les microcapsules doivent être placées;
     \item les recettes non réalisables, avec indication des éléments manquants;
     \item les recettes réalisées.
