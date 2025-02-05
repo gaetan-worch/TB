@@ -1,11 +1,23 @@
+\section{SwissCat+}
+Les catalyseurs est une espèce chimique qui permet ou accélère la réaction chimique sans être consummé dans le processus. Les catalyseurs sont utilisées dans divers domaines (Agricole, militaire, chimie, traitements des déchets, transformation de polluants, \dots). Ils sont indispensables dans notre société, cependant, ces produits requièrent souvent des terres rares. Par exemple, les catalyseurs dans les voitures (qui servent à réduire les émissions de gaz polluant en transformant notamment le monoxyde de carbone, les hydrocarbures imbrûlés et de l'oxyde d'azote en eau, dioxide de carbone et dioxide d'azote) sont composée d'alumine, d'oxyde de cérium mais surtout ils sont composés d'au moins trois platinoïde.
+
+
+C'est dans ce contexte de réduction d'utilisation de terre rare que le laboratoire SwissCat+ a été crée dans le but d'optimiser la composition des catalyseurs et d'en trouver des nouveaux. Le laboratoire est scindé en deux, le laboratoire Est, située à l'ETHZ à Zurich, s'occupe de faire des recherches sur les catalyseurs hétérogène, tandis que la partie du laboratoite Ouest, situé à l'EPFL à Lausanne, fera des recherches sur les catalyseurs homogènes.
+\subsection{laboratoire ouest}
+Le laboratoire doit être automatiser afin de pouvoir de grandes quantités d'expériences afin de pouvoir explorer un maximum de l'espace chimique. Pour avoir un espace chimique le plus grand possible, il faut que le laboratoire puisse manipuler des matières liquides et de larges quantité de poudre ($\qtyrange[range-units=single]{0.1}{50}{\mg} $).
 
 \section{Contexte et objectifs du projet Storm}
-Le projet STORMS (\textit{STOchasitic Robotized Micro Sampling}) vise à automatiser la manipulation de très petites quantités de poudre dans des capsules en verre,
-répondant aux besoins de la recherche en chimie et en science des matériaux. Ce projet, financé par Innosuisse et réalisé en collaboration avec l'EPFL, l'HEIG-VD, Chemspeed Technologies
-et Dietrich Engineering Consultants, cible l'amélioration de la préparation de micro-échantillons pour accélérer la découverte de nouveaux produits chimiques.
-\subsection{Méthodologie et défis techniques}
-La manipulation de poudres à l'échelle sub-milligramme est complexe en raison des propriétés variées des poudre (taille, densité, morphologie). STORMS propose une approche innovante
-de \og{}\textit{sampling stochasitic}\fg{}, générant une bibliothèque de masses aléatoires. Cela permet de contourner la difficulté de peser précisément une masse cible.
+C'est pour pouvoir gérer cette plage de quantité de poudre que le projet STORMS (\textit{STOchasitic Robotized Micro Sampling}), (en collaboration entre l'EPFL, l'HEIG-VD, Chemspeed Technologies et Dietrich Engineering Consultants) est né. STORMS est composés de plusieurs modules :
+\begin{itemize}
+    \item la standardisation,
+    \item le stockage,
+    \item le micro-échantillonage (\og microsampling\fg),
+    \item la recombinaison,
+    \item la box d'Edy
+    \item les box de Chemspeed
+\end{itemize}
+La standardisation à pour but de donner des récipients de taille standard aux microsampling qui va créée des microcapsules avec des quantités qui cible les quanntités souhaitée qui sont stockées sur des plaques nommées \og \textit{wellplate}\fg, qui sont ensuite rangées dans sur des rack dans le stockage. Ce stockage sert de lien entre la standardisation, le \og microsampling\fg  et la recombinaison.
+La recombinaison doit déterminer quelles microcapsules choisir pour toutes les recettes présentent dans le \og \textit{batch}\fg.
 
 \section{Recombinaison de microcapsules}
 Le processus de recombinaison consiste à assembler différentes microcapsules de poudres pour répondre aux besoins expérimentaux. Le logiciel de recombinaison sélectionne les capsules

@@ -223,7 +223,7 @@
 \RequirePackage[
   backref=true,
   backend=biber,
-  style=alphabetic,
+  style=authoryear,
   sorting=ynt
   ]{biblatex}
 

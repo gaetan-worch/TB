@@ -17,18 +17,201 @@ Les contraintes de l'algorithme sont les suivantes :
 Il possède en entrée : 
 \begin{itemize}
     \item les recettes du batch;
-    \item la position et la quantité de produit des microcapsules disponibles dans le stock;
-    \item la tolérance des recettes;
+    \item les microcapsules présentes dans le stock;
     \item le nombre maximal de microcapsule par réacteur.
 \end{itemize}
 
 \subsection*{Sorties}
 Les sorties de l'algorithme incluent : 
 \begin{itemize}
-    \item les numéros de plaque à utiliser;
-    \item la position des microcapsules sur les plaques (sous la forme \og{}ligne, colonne\fg{} );
-    \item les coordonnées et les numéros d'identification des réacteurs dans lesquels les microcapsules doivent être placées;
-    \item les recettes non réalisables, avec indication des éléments manquants;
-    \item les recettes réalisées.
+    \item Un tableau contenant pour chaque recette un liste avec les ids des capsules à utilisées ave le numéros de recettes sous la forme :
+    \begin{p} $[([id_1, id_2, \dots, id_n], n^{\circ} recette_1), \dots, ([id_1, id_2, \dots, id_n], n^{\circ} recette_m)]$ avec $m$ le nombre de recette\end{p});
+    \item Un tableau contenant la quantité de chaque produit pour chaque recette sous la forme : 
+    \begin{p} $[({"produit_1" : q_{produit_1}, \dots,  "produit_n" : q_{produit_n}}, n^{\circ} recette_1), \dots, \\({"produit_1" : q_{produit_1}, \dots,  "produit_n" : q_{produit_n}}, n^{\circ} recette_m)]$
+    \end{p}
+    \item Le numéro des recettes qui ne sont pas réalisable
+    \item Les éléments manquants pour réaliser les recettes non réalisable avec la forme :\begin{p} $[({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit_{manquant} n}"}, n^{recipe 1}),\\ \dots, ({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit manquant n}"}, n^{recipe m})]$ \end{p}
+    \item Les éléments manquants pour réaliser les recettes non réalisable avec la forme :\begin{p} $[({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit manquant n}"}, n^{recipe 1}), \\ \dots, ({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit manquant n}"}, n^{recipe m})]$ \end{p}
 \end{itemize}
-\subsection{Méthode d'optimisation et stratégie d'ordonnancement}
+\subsection{Définition du problème}
+Le problème consite à trouver une combinaison de microcapsules pour chaque recette qui maximise le nombre de recettes réalisées.
+\begin{equation}
+    \max\left(\sum_{i} \text{RecetteRealisée}_i\right)
+    \label{eq:objectif_algorithme}
+\end{equation}
+\subsubsection{Maximisation du nombre de recettes réalisées}
+Avec :
+\begin{itemize}
+    \item $N$, le nombre de microcapsules dans le stockage, $N \in \mathbb{N}^*$;
+    \item $k$, le nombre moyen de microcapsules par recette, $k\in \mathbb{N}^*$;
+    \item $R$, le nombre de recette réalisable, $R\in \mathbb{N}^*$.
+\end{itemize}
+Le nombre théorique de recettes réalisable est :
+\begin{equation}
+   R_{th} = \left\lfloor \frac{N}{k}\right\rfloor
+   \label{eq:nbre_recipe_th}
+\end{equation}
+L'équation \eqref{eq:objectif_algorithme}, implique une maximisation du nombre théorique de recettes réalisables \eqref{eq:maximisation}.
+\begin{align}
+    \max \left(\sum_{i}\text{RecetteRealisée}_i\right) &\implies \max\left(R_{th}\right) 
+    \label{eq:maximisation} \\
+    \max(R_{th}) = \max\left( \left\lfloor \frac{N}{k}\right\rfloor\right) &\implies \max\left(N\right) \vee \min\left(k\right)
+\end{align}
+Or, \(N\) est constant, donc :
+\begin{equation}
+    \max\left( \sum_{i} \text{RecetteRealisée}_i \right) \implies \min\left(k\right)
+    \label{eq:min_k}
+\end{equation}
+À des fins de faciliter, l'utilisation de la minimisation de $k$ \eqref{eq:min_k} sera préférée.
+\subsubsection{Contraintes}
+La liste des contraintes pour l'optimisateur sont les suivantes :
+\begin{itemize}
+    \item La quantité dans chaque réacteur doit être comprises dans la plage souhaitée;
+    \item le nombre de microcapsules dans un réacteur doit être inférieur ou égal à la quantité maximal de microcapsules dans le réacteur;
+    \item une microcapsules doit être utilisée une seule fois.
+\end{itemize}
+\subsubsection{\textit{Knapsack problem}}
+\begin{quotation}
+    \og The knapsack problem (KP) can be formally defined as follows: We are given an
+    instance of the knapsack problem with item set N, consisting of n items j with profit
+    Pj and weight Wj, and the capacity value c. (Usually, all these values are taken from
+    the positive integer numbers.) Then the objective is to select a subset of N such
+    that the total profit of the selected items is maximized and the total weight does not
+    exceed c.\fg (\cite[p. 2]{KnapsackProblemsBook})
+\end{quotation}
+Le problème posé ressemble donc au \textit{knapsack problem}, cependant étant donné qu'il y a plusieurs réacteurs (l'équivalent du sac) le problème est donc plutôt un \textit{Multiple knapsack problem} \footnote{\parencite[p. 285]{KnapsackProblemsBook}}. Il y a encore une nucance entre le problème posé et un \textit{Multiple knapsack problem}, c'est que dans un réacteur, il peut y avoir plusieurs produits dans un seul réacteur. Donc pour chaque batch, il y a plusieurs problèmed du type \textit{Multiple knapsack problem}.
+\subsection{Méthode d'optimisation}
+\subsubsection{Optimisation générale}
+L'optimisation générale consiste à traiter chaque produit séparément avec certaines contraintes (cf. \autoref{fig:algorithme_solver}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=9cm]{assets/figures/diagramme_flux_solver.drawio}
+    \caption{Algorithme de l'optimisateur.}
+    \label{fig:algorithme_optimisateur}
+\end{figure}
+
+\subsubsection{Optimisateur}
+L'approche la plus intuitive pour optimiser le problème consiste à calculer toutes les combinaisons possibles puis de sélectionner la solution qui répond le mieux aux critères définis.
+
+Le nombre de combinaisons $C$ possibles pour $k$ microcapsules et un stock $n$, se calcul comme suit :
+\begin{equation}
+    C_{k,n} = \frac{n!}{k!\cdot(n-k)!}
+    \label{eq:combinaison}
+\end{equation}
+\begin{equation}
+    C_{n} = \sum_{k = 1}^{l} C_{k,n} = \sum_{k=1}^{l}\frac{n!}{k!\cdot (n-k)!}
+    \label{eq:nbre_combinaisons}
+\end{equation} 
+La figure \autoref{fig:nbre_combinaisons} montre le nombre de combinaisons possible en fonction de la taille des réacteurs. 
+
+La figure \autoref{fig:tps_calc_combinaison} montre, en prenant en compte le nombre des calcul par secondes moyen pour les ordinateurs en $2020$ soit environ $10^{11}$ opérations par secondes \cite{petite_analyse_nbre_calculs_par_sec}, le temps nécessaire pour calculer toutes les combinaisons possibles. Il est possible d'observer que le temps nécessaire pour les combinaisons dépassant $x$ microcapsules maximal par réacteur, devient des durées non concevable pour cette application.
+Cette approche, bien qu'elle trouve toujours la solution optimale et qu'elle soit facilement compréhensible, n'est pas adapté au projet.
+
+Plusieurs algorithmes existes pour résoudre ce type de problème : 
+\begin{itemize}
+    \item glouton;
+    \item programmation dynamique;
+    \item optimisation linéaire;
+    \item heuristique;
+    \item \textit{branch and cut};
+    \item optimisation linéaire en nombres entiers;
+    \item un algorithme génétique.
+    \label{list:liste_algorithme}
+\end{itemize}
+
+Le problème peut être interpreté comme un problème contraint d'entier (\textit{Constraints Integer Problems} (CIPs)), car la sélection des microcapsules se fait de manière binaire (une microcapsule est sélectionner ou non). Pour les CIPs, il existe des frameworks (notamment SCIP (\textit{Solver Consraint Integer Programs})) utilisant certains des algorithmes citées précédemment \autoref{list:liste_algorithme}. L'utilisation de SCIP (qui permettra de ne pas implémenter chaque algorithme indépendamment) à travers le wrapper de Google or-tools sera utilisé afin de faciliter l'intégration en python. 
+
+L'utilisation de SCIP se fait avec la forme de l'optimisation avec contraintes :
+\begin{align*}
+    &\min\quad &x \\
+    &\text{subject to}\quad &\sum_{i}\left( a_ix_i\right) \leq b \\
+    &\text{and}\quad &x \in \mathbb{N}
+\end{align*}
+ou plus généralement : 
+\begin{align*}
+    &\min\quad &x \\
+    &\text{subject to}\quad &Ax \leq b \\
+    &\text{and}\quad &x \in \mathbb{N}
+\end{align*}
+Avec $b$ un vecteur et $A$ une matrice. Pour utiliser l'optimisateur, il faut définir la fonction de coût (cf. \autoref{subsubsection:fonction_de_cout}) à minimiser, et les contraintes (cf. \autoref{subsubsection:contraintes}).
+
+\subsubsection{Matrice de décision}
+L'optimisateur doit utilisé un vecteur de décision pour optimiser l'utilisation des microcapsules. Pour une recette le vecteur $\overrightarrow{x}$ est définie :
+\begin{equation}
+    x_{i}\in \left\{0, 1\right\}, \forall i\in\left\{1, 2, \dots, n\right\} \text{ avec } n\text{ le nombre de microcapsules en stock.}
+    \label{eq:vecteur_decision_1r}
+\end{equation}
+Ce vecteur (\autoref{eq:vecteur_decision_1r}) est valable pour $1$ seul recette. Idéalement pour plusieurs recettes, il faudrait une matrice $X$ (cf. \autoref{eq:decision_matrix}), qui est par la suite \og vectorisée \fg afin d'obtenir le vecteur de décision final (cf. \autoref{eq:decision_vector_final}). 
+\begin{equation}
+    X = \left[
+        \begin{array}{cccc}
+            x_{0, 0} & x_{0, 1} & \cdots & x_{0, n} \\
+            x_{1, 0} & x_{1, 1} & \cdots & x_{1, n} \\
+            \vdots   & \vdots   & \ddots & \vdots \\
+            x_{m, 0} & x_{m, 1} & \cdots & x_{m, n}
+        \end{array}
+        \right]
+    \label{eq:decision_matrix}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        \overrightarrow{x} = &\left[x_{0, 0}, \cdots, x_{0, n}, x_{1, 0}, \cdots, x_{1, n}, x_{m, 0}, \cdots, x_{m, n}, \right],\\ 
+        &\text{ avec n le nombre de microcapsules, et m le nombre de recettes.}
+    \end{split}
+    \label{eq:decision_vector_final}
+\end{equation}
+\subsubsection{Matrices de contraintes}\label{subsubsection:contraintes}
+Pour définir les deux matrices de contraintes ($A$ et $b$), il faut commencer par définir $b$ car la structure de $A$ en dépendra.
+$b$ est un vecteur colonne qui comprends pour chaque recette :
+\begin{enumerate}
+    \item La quantité maximal souhaitée (noté $Q_{max}$ suivi du numéro de recette).
+    \item La quantité minimale souhaitée (noté $Q_{min}$ suivi du numéro de recette).
+    \item Le nombre maximal de microcapsule par réacteur (noté $l$).
+\end{enumerate}
+Puis, s'en suit une colonne de $n$ $1$ correspond aux nombre de fois qu'une microcapsule peut être utilisé.
+\begin{equation}
+    b = \left[
+        \begin{array}{c}
+            Q_{max}1\\
+            -Q_{min}1\\
+            l\\
+            \vdots\\
+            Q_{max}n\\
+            -Q_{min}n\\
+            l\\
+                1 \\
+                \vdots \\
+                1
+        \end{array}
+    \right]
+\end{equation}
+En sachant que $Ax \leq b$, il est possible d'en déduire que $A$ sera décomposée en sous matrices (des matrices identité $I_n$ et une autre matrice nommées $m_1$).
+\begin{equation}
+    A = \left[\begin{array}{cccc}
+        m_1    & 0       & \cdots & 0\\
+        0      & m_1     & \cdots & 0\\
+        \vdots & \vdots  & \ddots & \vdots \\
+        0      & 0       & \cdots &  m_1 \\
+        I_n    & I_n     & \cdots &  I_n
+    \end{array}\right]
+\end{equation}
+Pour la composition de $m_1$, sert à déterminé si la somme de la quantité des capsules sélectionner est inférieur à la quantité limite, la deuxième à déterminé si la somme de  quantité des microcapsules sélectionnées est supérieur à la quantité minimale et la dernière ligne est présente pour verifier que la somme des microcapsules sélectionner ne dépasse pas la limite de microcapsule maximum par réacteur.
+\begin{equation}
+    m_1 = \left[\begin{array}{cccc}
+        Q_1  & Q_2  & \cdots & Q_n\\
+        -Q_1 & -Q_2 & \cdots & -Q_n\\
+        1    & 1    & \cdots & 1
+    \end{array}\right]
+\end{equation}
+\subsubsection{Fonction de coût}\label{subsubsection:fonction_de_cout}
+L'objectif de l'optimisation est de réduire le nombre de microcapsules utilisé, avec $x$ le vecteur de décision, le fonction de coût $f(\overrightarrow{x} )$ est donc : 
+\begin{equation}
+    f\left(\overrightarrow{x}\right) = \sum \overrightarrow{x} 
+    \label{eq:prem_cost_function}
+\end{equation}
+Cependant en utilisant la fonction (cf. \autoref{eq:prem_cost_function}), si une seul des recettes du batch n'est pas réalisable, l'optimisateur retournera le fait que le problème n'est résoluble, sans fournir les résutat des recettes dont il a trouvé des solutions. Pour résoudre ce problème, l'ajout d'une \textit{slack variable}, nommé $z$ est indispensable. Cette variable prendra la quantité manquante de certaines recette non réalisable. Afin de ne pas tomber dans l'utilisation excesive de $\overrightarrow{z}$, il est nécessaire de rendre le coût de celle-ci plus imporante grâce à un ratio $\alpha$. La fonction de coût définitive devient :
+\begin{equation}
+    f\left(\overrightarrow{x}\right) = \sum\left(\overrightarrow{x} + \alpha \overrightarrow{z} \right)
+    \label{eq:cost_function}
+\end{equation}
+Avec $\alpha$ définit arbitrairement à $10^{4}$.
