@@ -3,7 +3,7 @@ Le hardware doit pouvoir manipuler des plaques de microcapsules ou de réacteurs
 \section{Recherches de solution}
 Pour la recherche des solutions, le hardware a été décomposé par les fonctions suivantes : 
 \begin{itemize}
-    \item Saisie et dépose des microcapsules;
+    \item saisie et dépose des microcapsules;
     \item déplacement des microcapsules;
     \item saisie et dépose des plaques.
 \end{itemize} 
@@ -34,7 +34,7 @@ Pour la saisie des microcapsules, les grandes familles de solutions proposées s
 \subsection{Analyse des solutions}
 De par la complexité et le manque de modularité du transport pneumatique et du convoyeur, le choix d'utiliser un robot a été choisi.
 
-La position des plaques dans la \textit{glove box} est importante pour la suite, elle permettra de choisir le type de robot à utilisés.
+La position des plaques dans la \textit{glove box} est importante pour la suite, elle permettra de choisir le type de robot à utiliser.
 Il est important de savoir comment placer les deux plaques dans la \textit{glove box}.
 \subsubsection{Positionnement des plaques dans la \textit{glove box}}
 Pour la position des plaques, les solutions trouvées sont : 
@@ -50,7 +50,7 @@ Le temps de cycle est le suivant :
 \begin{align*}
     tpsCycle &= tpsDeplacementPlaquesCapsule + tpsDeplacement_{Capsule} \\
     &+ tpsAttentePlaque + tpsDeplacement_{PlaquesReacteur}\\
-    &= nbrePlaques\cdot \frac{d_{PlaqueMicrocapsules}}{v_{robot}} + nbreMicrocapsules\cdot \frac{d_{EntrePlaque}}{v_{robot}} \\
+    &= nbrePlaques\cdot \frac{d_{PlaqueMicrocapsules}}{v_{robot}} \\&+ nbreMicrocapsules\cdot \frac{d_{EntrePlaque}}{v_{robot}} \\
     &+ 2\cdot nbrePlaques\cdot tpsAttente + \frac{d_{PlaqueReacteur}}{v_{robot}}
 \end{align*}
 
@@ -72,7 +72,7 @@ Avec ces informations, il est possible de calculer le temps moyen d'un cycle (\c
     \caption{Temps de cycle moyen des différentes solutions}
     \label{img:graph_temps_cycle_moyen_sequentielle}
 \end{figure}
-Il est possible de voir que les solutions $1$ et $6$ semble les plus rapide. Le temps d'attente des plaques est cependant très important, environ $84~\%$ du temps total. Pour réduire ce délai, il peut être intéressant de paralléliser les tâches.
+Il est possible de voir que les solutions $4$ et $6$ semblent les plus rapide. Le temps d'attente des plaques est cependant très important, environ $84~\%$ du temps total. Pour réduire ce délai, il peut être intéressant de paralléliser les tâches.
 \subsubsection{parallélisation des robots}
 La parallélisation des tâches consiste à effectuer le \textit{pick and place} des microcapsules, la prise et la dépose des plaques indépendamment.
 De par la configuration des sas, il n'est possible d'y mettre qu'une seule plaque, la parallélisation des solutions $\numlist{1; 3; 4}$ n'est donc pas possible.
@@ -103,16 +103,16 @@ Voici la liste de matériel utilisé lors du TB :
     \item Support pour les plaques.
 \end{itemize}
 \section{Intégration}
-Afin de maximiser l'espace accessible par le robot, il a été surélevé (\cf \autoref{img:integration_robot_glove}). La moitié gauche est réservée pour le \textit{pick and place} des microcapsules, tandis que la partie à droite servira pour la suite du processus.
+Afin de maximiser l'espace accessible par le robot, ce dernier a été surélevé (\cf \autoref{img:integration_robot_glove}). La moitié gauche est réservée pour le \textit{pick and place} des microcapsules, tandis que la partie à droite servira pour la suite du processus.
 Pour les outils, la pince se met sur la bride du robot et elle possède deux trous taraudés qui seront utilisé pour fixer le module d'aspiration (\cf \autoref{img:integration_pince}).
 L'outil pour saisir les plaques fait un angle à $\qty{45}{\degree}$ pour pouvoir déposer les plaques sur tout le plan \textit{repPickAndPlace}. Afin de gagner de la place, les deux outils sont placés dans des directions opposées.
-\begin{figure}[]
+\begin{figure}[ht]
     \centering
     \includegraphics[width = 0.5\textwidth]{assets/figures/Hardware/gloveBox.jpeg}
     \caption{Intégration du robot dans la \textit{glove box}}
     \label{img:integration_robot_glove}
 \end{figure}
-\begin{figure}[]
+\begin{figure}[ht]
     \centering
     \includegraphics[width = 0.5\textwidth]{assets/figures/Hardware/outil_complet.jpeg}
     \caption{Module d'aspiration}

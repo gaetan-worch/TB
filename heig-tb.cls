@@ -484,3 +484,5 @@ Yverdon-les-Bains, le \@date
     ](key) {#1\strut}
   ;
 }
+
+\DeclareSIUnit\bar{bar}

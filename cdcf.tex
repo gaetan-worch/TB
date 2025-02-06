@@ -1,12 +1,12 @@
 \rowcolors{3}{gray!10}{white}
 \begin{longtable}{l|m{5cm}|m{5cm}}
     \caption{Cahier des charges fonctionnel}\\
-    \hline \multicolumn{1}{c|}{\textbf{Fonction}} & \multicolumn{1}{c|}{\textbf{Énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{Éxigence}} \\ \hline 
+    \hline \multicolumn{1}{c|}{\textbf{fonction}} & \multicolumn{1}{c|}{\textbf{énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{éxigence}} \\ \hline 
     \endfirsthead
     
     \multicolumn{3}{c}%
-    {{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
-    \hline \multicolumn{1}{c|}{\textbf{Fonction}} & \multicolumn{1}{c|}{\textbf{Énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{Éxigence}} \\ \hline 
+    {{\textbf{\tablename\ \thetable{}}-- continued from previous page}} \\
+    \hline \multicolumn{1}{c|}{\textbf{fonction}} & \multicolumn{1}{c|}{\textbf{énoncé de la fonction}} & \multicolumn{1}{c}{\textbf{éxigence}} \\ \hline 
     \endhead
     \hline \multicolumn{3}{r}{{Continued on next page}} \\ \hline
     \endfoot
@@ -28,7 +28,7 @@
         FP $2.2$&\centering Accéder à la base de donnée du stock&\\
         FP $2.3$&\centering Déterminer la combinaison de microcapsules optimal pour délivrer la masse de produit donnée&\begin{itemize}
             \item Précision dans la masse délivrée : varie à chaque recette.
-            \item Nombre maximale de microcapsules par vial : $5$
+            \item Nombre maximale de microcapsules par réacteur : $5$
         \end{itemize}\\
         FP $2.4$&\centering Transmettre la position des microcapsules dans le stock et sur la plaque&\\
         FP $2.5$&\centering Informer le stock des microcapsules prélevées&\\
@@ -40,11 +40,11 @@
             \end{itemize}
             \item Pneumatique : $\qty{8}{\bar}$
         \end{itemize}\\ 
-        FC $3$&\centering Utiliser les plaques déjà présente&\begin{itemize}
+        FC $3$&\centering Utiliser les plaques déjà présentes&\begin{itemize}
             \item Nombre de trou sur la plaque de prise : $384$
             \item Nombre de trou sur la plaque de dépose : $48$
         \end{itemize}\\
-        FC $4$&\centering S'adapter aux éléments déjà présent&\begin{itemize}
+        FC $4$&\centering S'adapter aux éléments déjà présents&\begin{itemize}
             \item API : Beckhoff
         \end{itemize}\\
         FC $5$&\centering Dimension des microcapsules : $\varnothing~\qty{3}{\mm}$&

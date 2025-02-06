@@ -24,13 +24,9 @@ Les outils nécessaires pour réaliser la manipulation sont :
 \end{itemize}
 Une pointe a également été fabriquée, pour faciliter la programmation des différents repères nécessaires.
 
-Pour ajouter les outils, il faut, pour chaque outil, connaître la position du TCP par rapport à la bride du robot, il faut également connaître son centre de masse et son poids.
-Il existe sur le robot, un programme permettant de récupérer toutes les informations nécessaires. Les trois outils ont été implémentés grâce à ce programme.
-
-
 \subsection{Sécurité}
 \subsubsection*{Limites de sécurité}
-Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites des sécurités sont nécessaires, une par porte de la \textit{glove box}.
+Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites des sécurités sont nécessaires (une limite par porte de la \textit{glove box}).
 Pour définir ces limites, il faut :
 \begin{enumerate}
     \item Définir un point en mettant l'outil perpendiculaire au plan souhaité.
