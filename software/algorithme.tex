@@ -1,7 +1,7 @@
 \section{Algorithme de recombinaison}
 \subsection{Spécification de l'algorithme}
 \subsubsection*{Objectif}
-L'algorithme a pour objectif de sélectionner les microcapsules, dans le stock, à utiliser pour chaque recette d'un batch, soit environ $300$ recettes.
+L'algorithme a pour objectif de sélectionner les \glspl{microcapsule}, dans le stock, à utiliser pour chaque recette d'un batch, soit environ $300$ recettes.
 
 \subsection*{Contraintes}
 Les contraintes de l'algorithme sont les suivantes : 
@@ -9,16 +9,16 @@ Les contraintes de l'algorithme sont les suivantes :
     \item Maximiser le nombre de recettes réalisées.
     \begin{itemize}
         \item Se situer entre dans la plage de tolérance de quantité pour chaque produit; 
-        \item respecter la quantité maximale de microcapsules de chaque réacteur.
+        \item respecter la quantité maximale de \glspl{microcapsule} de chaque réacteur.
     \end{itemize}    
-    \item Minimiser le nombre de microcapsules utilisées par réacteur.
+    \item Minimiser le nombre de \glspl{microcapsule} utilisées par réacteur.
 \end{enumerate}
 \subsection*{Entrées}
 Il possède en entrée : 
 \begin{itemize}
     \item les recettes du batch;
-    \item les microcapsules présentes dans le stock;
-    \item le nombre maximal de microcapsule par réacteur.
+    \item les \glspl{microcapsule} présentes dans le stock;
+    \item le nombre maximal de \gls{microcapsule} par réacteur.
 \end{itemize}
 
 \subsection*{Sorties}
@@ -32,7 +32,7 @@ Les sorties de l'algorithme incluent :
     \item Les éléments manquants pour réaliser les recettes non réalisable avec la forme : $[({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit manquant n}"}, n^{recipe 1}), \\ \dots, ({"Produit_{manquant}~1" : q_{produit manquant 1}, \dots "Produit_{manquant}~n" : q_{produit manquant n}"}, n^{recipe m})]$ 
 \end{itemize}
 \subsection{Définition du problème}
-Le problème consite à trouver une combinaison de microcapsules pour chaque recette qui maximise le nombre de recettes réalisées.
+Le problème consite à trouver une combinaison de \glspl{microcapsule} pour chaque recette qui maximise le nombre de recettes réalisées.
 \begin{equation}
     \max\left(\sum_{i} \text{RecetteRealisée}_i\right)
     \label{eq:objectif_algorithme}
@@ -40,8 +40,8 @@ Le problème consite à trouver une combinaison de microcapsules pour chaque rec
 \subsubsection{Maximisation du nombre de recettes réalisées}
 Avec :
 \begin{itemize}
-    \item $N$, le nombre de microcapsules dans le stockage, $N \in \mathbb{N}^*$;
-    \item $k$, le nombre moyen de microcapsules par recette, $k\in \mathbb{N}^*$;
+    \item $N$, le nombre de \glspl{microcapsule} dans le stockage, $N \in \mathbb{N}^*$;
+    \item $k$, le nombre moyen de \glspl{microcapsule} par recette, $k\in \mathbb{N}^*$;
     \item $R$, le nombre de recette réalisable, $R\in \mathbb{N}^*$.
 \end{itemize}
 Le nombre théorique de recettes réalisable est :
@@ -49,7 +49,7 @@ Le nombre théorique de recettes réalisable est :
    R_{th} = \left\lfloor \frac{N}{k}\right\rfloor
    \label{eq:nbre_recipe_th}
 \end{equation}
-L'équation \eqref{eq:objectif_algorithme}, implique une maximisation du nombre théorique de recettes réalisables \eqref{eq:maximisation}.
+L'équation (cf.\autoref{eq:objectif_algorithme}), implique une maximisation du nombre théorique de recettes réalisables (cf. \autoref{eq:maximisation}).
 \begin{align}
     \max \left(\sum_{i}\text{RecetteRealisée}_i\right) &\implies \max\left(R_{th}\right) 
     \label{eq:maximisation} \\
@@ -60,13 +60,13 @@ Or, \(N\) est constant, donc :
     \max\left( \sum_{i} \text{RecetteRealisée}_i \right) \implies \min\left(k\right)
     \label{eq:min_k}
 \end{equation}
-À des fins de faciliter, l'utilisation de la minimisation de $k$ \eqref{eq:min_k} sera préférée.
+À des fins de faciliter, l'utilisation de la minimisation de $k$ (cf. \autoref{eq:min_k}) sera préférée.
 \subsubsection{Contraintes}
 La liste des contraintes pour l'optimisateur sont les suivantes :
 \begin{itemize}
     \item La quantité dans chaque réacteur doit être comprises dans la plage souhaitée;
-    \item le nombre de microcapsules dans un réacteur doit être inférieur ou égal à la quantité maximal de microcapsules dans le réacteur;
-    \item une microcapsules doit être utilisée une seule fois.
+    \item le nombre de \glspl{microcapsule} dans un réacteur doit être inférieur ou égal à la quantité maximal de \glspl{microcapsule} dans le réacteur;
+    \item une \glspl{microcapsule} ne peut être utilisée plusieurs fois.
 \end{itemize}
 \subsubsection{\textit{Knapsack problem}}
 \begin{quotation}
@@ -77,21 +77,21 @@ La liste des contraintes pour l'optimisateur sont les suivantes :
     that the total profit of the selected items is maximized and the total weight does not
     exceed c.\fg (\cite[p. 2]{KnapsackProblemsBook})
 \end{quotation}
-Le problème posé ressemble donc au \textit{knapsack problem}, ceapendant étant donné qu'il y a plusieurs réacteurs (l'équivalent du sac) le problème est donc plutôt un \textit{Multiple knapsack problem} \footnote{\parencite[p. 285]{KnapsackProblemsBook}}. Il y a encore une nucance entre le problème posé et un \textit{Multiple knapsack problem}, c'est que dans un réacteur, il peut y avoir plusieurs produits dans un seul réacteur. Donc pour chaque batch, il y a plusieurs problèmed du type \textit{Multiple knapsack problem}.
+Le problème posé ressemble au \textit{knapsack problem}, cependant étant donné qu'il y a plusieurs réacteurs (l'équivalent du sac) le problème est donc plutôt un \textit{Multiple knapsack problem} \footnote{\parencite[p. 285]{KnapsackProblemsBook}}. Il y a encore une nuance entre le problème posé et un \textit{Multiple knapsack problem}, c'est que dans un réacteur, il peut y avoir plusieurs produits dans un seul réacteur. Donc pour chaque batch, il y a plusieurs problème du type \textit{Multiple knapsack problem}.
 \subsection{Méthode d'optimisation}
 \subsubsection{Optimisation générale}
 L'optimisation générale consiste à traiter chaque produit séparément avec certaines contraintes (cf. \autoref{fig:algorithme_optimisateur}).
 \begin{figure}[H]
     \centering
     \includegraphics[width=9cm]{assets/figures/diagramme_flux_solver.drawio}
-    \caption{Algorithme de l'optimisateur.}
+    \caption{Algorithme général de l'optimisateur.}
     \label{fig:algorithme_optimisateur}
 \end{figure}
 
 \subsubsection{Optimisateur}
 L'approche la plus intuitive pour optimiser le problème consiste à calculer toutes les combinaisons possibles puis de sélectionner la solution qui répond le mieux aux critères définis.
 
-Le nombre de combinaisons $C$ possibles pour $k$ microcapsules et un stock $n$, se calcul comme suit :
+Le nombre de combinaisons $C$ possibles pour $k$ \glspl{microcapsule} et un stock $n$, se calcul comme suit :
 \begin{equation}
     C_{k,n} = \frac{n!}{k!\cdot(n-k)!}
     \label{eq:combinaison}
@@ -122,7 +122,7 @@ Le nombre de combinaisons $C$ possibles pour $k$ microcapsules et un stock $n$, 
     \caption{Temps de calcul en fonction de la taille des réacteurs}
     \label{fig:tps_calc_combinaison}
 \end{figure}
-La \autoref{fig:tps_calc_combinaison} montre, en prenant en compte le nombre de combinaisons possible (cf. \autoref{fig:nbre_combinaisons}) le nombre des calcul par secondes moyen pour les ordinateurs en $2020$ soit environ $10^{11}$\footcite{petite_analyse_nbre_calculs_par_sec} opérations par secondes , le temps nécessaire pour calculer toutes les combinaisons possibles. Il est possible d'observer que le temps nécessaire pour les combinaisons dépassant $x$ microcapsules maximal par réacteur, devient des durées non concevable pour cette application.
+La \autoref{fig:tps_calc_combinaison} montre le temps nécessaire pour calculer toutes les combinaisons possibles (en prenant en compte le nombre de combinaisons possible (cf. \autoref{fig:nbre_combinaisons}) et le nombre des calcul par secondes moyen pour les ordinateurs en $2020$ environ $10^{11}$\footcite{petite_analyse_nbre_calculs_par_sec} opérations par secondes). Il est possible d'observer que le temps nécessaire pour les combinaisons dépassant $x$ \glspl{microcapsule} maximal par réacteur, devient des durées non concevable pour cette application.
 Cette approche, bien qu'elle trouve toujours la solution optimale et qu'elle soit facilement compréhensible, n'est pas adapté au projet.
 
 Plusieurs algorithmes existes pour résoudre ce type de problème : 
@@ -137,7 +137,7 @@ Plusieurs algorithmes existes pour résoudre ce type de problème :
     \label{list:liste_algorithme}
 \end{itemize}
 
-Le problème peut être interpreté comme un problème contraint d'entier (\textit{Constraints Integer Problems} (CIPs)), car la sélection des microcapsules se fait de manière binaire (une microcapsule est sélectionner ou non). Pour les CIPs, il existe des frameworks (notamment SCIP (\textit{Solver Consraint Integer Programs})) utilisant certains des algorithmes citées précédemment \autoref{list:liste_algorithme}. L'utilisation de SCIP (qui permettra de ne pas implémenter chaque algorithme indépendamment) à travers le wrapper de Google or-tools sera utilisé afin de faciliter l'intégration en python. 
+Le problème peut être interpreté comme un problème contraint d'entier (\textit{Constraints Integer Problems} (CIPs)), car la sélection des \glspl{microcapsule} se fait de manière binaire (une \gls{microcapsule} est sélectionner ou non). Pour les CIPs, il existe des frameworks (notamment SCIP (\textit{Solver Consraint Integer Programs})) utilisant certains des algorithmes citées précédemment \autoref{list:liste_algorithme}.
 
 L'utilisation de SCIP se fait avec la forme de l'optimisation avec contraintes :
 \begin{align*}
@@ -154,7 +154,8 @@ ou plus généralement :
 Avec $b$ un vecteur et $A$ une matrice. Pour utiliser l'optimisateur, il faut définir la fonction de coût (cf. \autoref{subsubsection:fonction_de_cout}) à minimiser, et les contraintes (cf. \autoref{subsubsection:contraintes}).
 
 \subsubsection{Matrice de décision}
-L'optimisateur doit utilisé un vecteur de décision pour optimiser l'utilisation des microcapsules. Pour une recette le vecteur $\overrightarrow{x}$ est définie :
+\rowcolors{0}{white}{white}
+L'optimisateur doit utilisé un vecteur de décision pour optimiser l'utilisation des \glspl{microcapsule}. Pour une recette le vecteur $\overrightarrow{x}$ est définie :
 \begin{equation}
     x_{i}\in \left\{0, 1\right\}, \forall i\in\left\{1, 2, \dots, n\right\} \text{ avec } n\text{ le nombre de microcapsules en stock.}
     \label{eq:vecteur_decision_1r}
@@ -184,9 +185,9 @@ $b$ est un vecteur colonne qui comprends pour chaque recette :
 \begin{enumerate}
     \item La quantité maximal souhaitée (noté $Q_{max}$ suivi du numéro de recette).
     \item La quantité minimale souhaitée (noté $Q_{min}$ suivi du numéro de recette).
-    \item Le nombre maximal de microcapsule par réacteur (noté $l$).
+    \item Le nombre maximal de \gls{microcapsule} par réacteur (noté $l$).
 \end{enumerate}
-Puis, s'en suit une colonne de $n$ ligne de $1$, correspondant aux nombre de fois qu'une microcapsule peut être utilisé.
+Puis, s'en suit une colonne de $n$ ligne de $1$, correspondant aux nombre de fois qu'une \gls{microcapsule} peut être utilisé.
 \begin{equation}
     b = \left[
         \begin{array}{c}
@@ -213,7 +214,7 @@ En sachant que $Ax \leq b$, il est possible d'en déduire que $A$ sera décompos
         I_n    & I_n     & \cdots &  I_n
     \end{array}\right]
 \end{equation}
-Pour la composition de $m_1$, la première ligne sert à déterminé si la somme de la quantité des capsules sélectionner est inférieur à la quantité limite, la deuxième à déterminé si la somme de  quantité des microcapsules sélectionnées est supérieur à la quantité minimale et la dernière ligne est présente pour verifier que la somme des microcapsules sélectionner ne dépasse pas la limite de microcapsule maximum par réacteur.
+Pour la composition de $m_1$, la première ligne sert à déterminé si la somme de la quantité des capsules sélectionner est inférieur à la quantité limite, la deuxième à déterminé si la somme de  quantité des \glspl{microcapsule} sélectionnées est supérieur à la quantité minimale et la dernière ligne est présente pour verifier que la somme des \glspl{microcapsule} sélectionner ne dépasse pas la limite de \gls{microcapsule} maximum par réacteur.
 \begin{equation}
     m_1 = \left[\begin{array}{cccc}
         Q_1  & Q_2  & \cdots & Q_n\\
@@ -222,7 +223,7 @@ Pour la composition de $m_1$, la première ligne sert à déterminé si la somme
     \end{array}\right]
 \end{equation}
 \subsubsection{Fonction de coût}\label{subsubsection:fonction_de_cout}
-L'objectif de l'optimisation est de réduire le nombre de microcapsules utilisé, avec $x$ le vecteur de décision, le fonction de coût $f(\overrightarrow{x} )$ est donc : 
+L'objectif de l'optimisation est de réduire le nombre de \glspl{microcapsule} utilisé, avec $x$ le vecteur de décision, le fonction de coût $f(\overrightarrow{x} )$ est donc : 
 \begin{equation}
     f\left(\overrightarrow{x}\right) = \sum \overrightarrow{x} 
     \label{eq:prem_cost_function}

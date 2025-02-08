@@ -1,0 +1,20 @@
+\section{Points forts}
+La réalisation de ce travail de Bachelor a permis de concevoir et d'implémenter un système robotisé pour la manipulation de \glspl{microcapsule} dans un environnement confiné. Bien que les objectifs initiaux aient été globalement atteints, certaines limitations et axes d'amélioration méritent d'être discutés.
+\begin{itemize}
+    \item \textbf{Précision et efficacité :} Le système robotisé mis en place s'est révélé capable de manipuler les \glspl{wellplate} avec une précision satisfaisante. L'intégration du robot avec les outils dévellopés a permis d'automatiser efficacement le transfert des capsules entre les \glspl{wellplate} et les réacteurs.
+    \item \textbf{Flexibilité du système :} La configuration retenue, avec un robot positionné au centre de la \glspl{glovebox}, offre une grande modularité, permettant de l'adapter à d'autres processus futures au laboratoire SwissCar$+$.
+    \item \textbf{Optimisation logicielle :} L'algorithme de recombinaison a démontré sa capacité à maximiser le nombre de recettes réalisables, grâce à une approche rigoureuse basée sur des techniques d'optimisation contraintes.
+\end{itemize}
+\section{Limitations}
+\begin{itemize}
+    \item \textbf{Prise des microcapsules :} Le système pneumatique pour saisir les \glspl{microcapsule} n'as pas pu être dévellopé par manque de temps.
+    \item \textbf{Problème de manipulation :} Certains risques liés à la manipulation, comme le renversemment des \glspl{wellplate}, des \glspl{paradox} ou la perte de \glspl{microcapsule} lors du transport, ont été identifiés. Des solutions ont été proposées (cf. \autoref{tab:solutions_risques}), leur implementation reste partielle voir inexistante et nécessiterait une validation plus approfondie.
+    \item \textbf{Temps de traitement : } Bien que l'algorithme permette une recombinaison efficace des \glspl{microcapsule}, lors de problèmes trop complexe, la recombinaison pourrait devenir un goulot d'étranglement. Une optimisation supplémentaire de l'algorithme, notamment en utilisant une méthode heuristique plus avancée pourrait améliorer les performances. 
+\end{itemize}
+\section{Perspectives}
+\begin{itemize}
+    \item \textbf{Amélioration matérielle :} L'amélioration de la pince pour pouvoir saisir la \gls{paradox} (un entraxe plus grand suffirait).
+    \item \textbf{Dévellopement du réseau pneumatique :} Le dévellopement d'un réseau pneumatique permettant au robot de faire le plus de déplacement possible est nécessaire.
+    \item \textbf{Validation expérimentale :} Des tests à plus grandes échelle avec des lot de \glspl{microcapsule} et des recettes variées permettront d'évaluer plus précisement les performances du systèmes en conditions réelles.
+    \item \textbf{Algorithme et intelligence artificielle :} L'intégration d'un algorithme d'apprentissage pour sélectionner les \glspl{microcapsule} permettrait de diminuer le temps de traitement de l'algorithme.
+\end{itemize}

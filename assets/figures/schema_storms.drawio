@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="26.0.11">
+  <diagram name="Page-1" id="zVOwjjBXEHCE0dHdKNT7">
+    <mxGraphModel dx="1112" dy="1195" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-1" value="Chemspeed" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-13" y="-39" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-2" value="synthBox" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="107" y="-39" width="61" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-3" value="Chemspeed" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="168" y="-39" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-4" value="Recombinaison" style="rounded=0;whiteSpace=wrap;html=1;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="77.5" y="51" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-5" value="Microsampling" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-13" y="141" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-6" value="Stockage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="107" y="141" width="61" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IVyTEk1Pl9MqD4AyzKzG-7" value="Standardisation" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="168" y="141" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,42 @@
+La sécurité est aspect important de ce projet, en raison de l'utilisation d'un robot UR$3$ dans un espace confiné pour manipuler des composants chimiques. Cette section détaille les mesures mises en oeuvre ou à mettre en oeuvre pour assurer la sécurité des opérateurs, du matériel et des échantillons.
+\section{Identification des risques}\label{sec:identification_risque}
+Pour faire cette analyse, une approche ascendante\footnote{L'approche ascendante consiste à partir de la base (qu'est-ce qui peut être dangereux) puis remonter pour en trouver les effets. Inversement à l'approche descendante qui cherche les causes à partir d'un accident} avec une matrice de risques (cf. \autoref{tab:ananylse_risque}) sont utilisées. Pour la matrice de risque, la criticité du risque est le produit de la gravité et de l'occurrence de ce risque. Cette criticité servira à prioriser l'ordre de réduction des risques (plus la criticité est élevée, plus le risque est important et doit être réduit).
+\rowcolors{3}{gray!10}{white}
+\begin{landscape}
+    \begin{table}[ht]
+        \begin{tabular}{l|l|l|c|c|c}
+        \multicolumn{1}{c|}{Id} & \multicolumn{1}{|c|}{Description}           & \multicolumn{1}{c|}{Impact}                                                                                                          & \begin{tabular}[c]{@{}c@{}}Gravité\\ {[}1-5{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}Occurence\\ {[}1-5{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}Criticité\\ {[}1-25{]}\end{tabular} \\
+        \hline
+        1                      & Déchirement des gants par le robot        & Perte de l'étanchéité                                                                                                               & 5                                                           & 1                                                             & 5                                                              \\
+        2                      & \gls{microcapsule}apsule non saisie                   & Erreur lors des analyses                                                                                                            & 1                                                           & 2                                                             & 2                                                              \\
+        3                      & \gls{microcapsule}apsule non déposée                  & \begin{tabular}[c]{@{}l@{}}Erreur lors des analyses\\ Détéroration des prochaines \glspl{microcapsule}\end{tabular}                         & 3                                                           & 2                                                             & 6                                                              \\
+        4                      & Perte de \gls{microcapsule} lors du déplacement & \begin{tabular}[c]{@{}l@{}}Erreur lors des analyses\\ Contamination de la \gls{glovebox}\end{tabular}                                    & 4                                                           & 3                                                             & 12                                                             \\
+        5                      & Renversement d'une wellplate              & \begin{tabular}[c]{@{}l@{}}Perte de la totalité des capsules de la wellplate\\ Contamination de la \gls{glovebox}\end{tabular}           & 5                                                           & 2                                                             & 10                                                             \\
+        6                      & Renversement d'une \gls{paradox}          & \begin{tabular}[c]{@{}l@{}}Perte de la totalité des capsules présentes dans la \gls{paradox}\\ Contamination de la \gls{glovebox}\end{tabular} & 5                                                           & 3                                                             & 15                                                             \\
+        7                      & Collision entre les gants et le robot     & Contusions                                                                                                                           & 5                                                           & 1                                                             & 5                                                             
+        \end{tabular}
+        \caption{Analyses des risques}
+        \label{tab:ananylse_risque}
+        \end{table}
+\end{landscape}
+
+\section{Solutions}
+Cette section à pour but de donner des solutions envigeasable au risques déterminer précédemment (cf. \autoref{sec:identification_risque}). Les solutions trouvées doivent impacter, la gravité, le nombre d'occurence ou les deux.
+Par exemple, en prenant le risque à traiter en priorité (le numéro $6$ qui possède une criticité de $15$ (cf. \autoref{tab:ananylse_risque})), il est possible de modifier la \gls{paradox} afin d'y ajouter des ergots et ainsi améliorer le maintient des celle-ci dans la pince du robot, réduisant le nombre d'occurence de ce risque, mais il est également possible de rajouter un couvercle par dessus la \gls{paradox} afin de ne pas éparpiller le contenu dans la \gls{glovebox}, réduisant ainsi la gravité du risque.
+Toutes les solutions proposées n'ont pas forcément été appliquée lors du travail de Bachelor.
+
+\begin{table}[H]
+    \begin{tabular}{l|c|c}
+        Id du risque & Solutions proposées                                                                                                                                          &\begin{tabular}[c]{@{}c@{}}Action{[}Gravité,\\Occurence ou les deux{]}\end{tabular}\\
+        \hline
+        $6$          & \begin{tabular}[c]{@{}l@{}}Améliorer l'ergonomie de la \gls{paradox} par rapport à la pince.\\Placer un couvercle sur la \gls{paradox} lors des déplacements.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Occurence\\Gravité\end{tabular}\\
+        $4$          & \begin{tabular}[c]{@{}l@{}}Augmenter la pression pour l'aspiration.\\ Mettre un bac récupérateur sous la pince.\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}} Occurence\\ Gravité\end{tabular}\\
+        $5$          & \begin{tabular}[c]{@{}l@{}}Ajout de trous sur la \textit{wellplate} \\pour améliorer la prise de la pince.\end{tabular}                                        & Occurence\\
+        $3$          & Ajouter un système de soufflerie lors de la dépose.                                                                                                            & Occurence\\
+        $7$          & Mettre des gants plus épais.                                                                                                                                   & Gravité\\
+        $1$          & Arrondir tous les angles présents sur la pince.                                                                                                                & Occurence\\
+        $2$          & Augmenter la pression pour l'aspiration.                                                                                                                       & Occurence
+    \end{tabular}
+    \caption{Solutions face aux risques (dans l'ordre de priorité)}
+    \label{tab:solutions_risques}
+\end{table}

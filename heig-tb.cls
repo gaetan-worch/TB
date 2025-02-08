@@ -251,10 +251,20 @@
   urlcolor=linkcolor]{hyperref}
 
 \RequirePackage{csquotes}
+\RequirePackage{multirow}
+\RequirePackage{rotating}
+\RequirePackage{lscape}
 
 \usetikzlibrary{babel}
 \usemintedstyle{colorful}
-\setminted{frame=single,fontsize=\footnotesize}
+\setminted{
+  breaklines=true,     % Retour à la ligne automatique
+  breakanywhere=true,  % Autorise la coupure entre les mots
+  fontsize=\footnotesize,     % Taille de la police
+  linenos=true,        % Numéros de ligne
+  frame=lines,         % Bordure autour du code
+  tabsize=4   
+}
 
 \newcommand{\clearemptydoublepage}{%
 	\newpage{\thispagestyle{empty}\cleardoublepage}}
@@ -267,10 +277,17 @@
 
 %% Configuration de listings (minted est néanmoins préféré)
 \lstset{%
-language=C, % Vous pouvez choisir le langage de votre choix
-breaklines=true,
-breakatwhitespace=false,
-basicstyle=\footnotesize\sffamily}
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=false,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  captionpos=b,
+  tabsize=4
+}
 
 %% Settings
 \def\subtitle#1{\def\@subtitle{#1}}
@@ -462,6 +479,7 @@ Yverdon-les-Bains, le \@date
         \multicolumn2c*\\[-2ex]*&*%
       \end{tabular}}}\hfill\vspace{1em}}
 
+    
 %% Locutions
 \def\pex{p.~ex.~}
 \def\cad{c.-à-d.~}

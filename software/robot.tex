@@ -1,7 +1,7 @@
 \section{Robot}
 
 \subsection{Objectif}
-Le robot doit manipuler les microcapsules en effectuant des tâches de \textit{pick and place} depuis leur zone de stockage jusqu'aux réacteurs. Il doit également être capable de manipuler des plaques de microcapsules et de \og{}Para-dox\fg{}.
+Le robot doit manipuler les \glspl{microcapsule} en effectuant des tâches de \textit{pick and place} depuis leur zone de stockage jusqu'aux réacteurs. Il doit également être capable de manipuler des plaques de \glspl{microcapsule} et de \og{}Para-dox\fg{}.
 
 \subsection{Contraintes}
 \begin{enumerate}
@@ -20,10 +20,10 @@ La programmation est effectuée en deux parties :
 Les outils nécessaires pour réaliser la manipulation sont :
 \begin{itemize}
     \item une pince pour saisir les \textit{well plate} et les plaques \og{}Para-dox\fg{};
-    \item un module pour l'aspiration des microcapsules.
+    \item un module pour l'aspiration des \glspl{microcapsule}.
 \end{itemize}
 Une pointe a également été fabriquée, pour faciliter la programmation des différents repères nécessaires.
-
+\textcolor{red}{Ajout de détaille sur le matériel}
 \subsection{Sécurité}
 \subsubsection*{Limites de sécurité}
 Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites des sécurités sont nécessaires (une limite par porte de la \textit{glove box}).
@@ -38,7 +38,7 @@ Pour définir ces limites, il faut :
 Deux repères seront utilisés :
 \begin{itemize}
     \item le repère de base qui sera utilisé pour déplacer les plaques;
-    \item le repère \og{}repPickAndPlace\fg{} (\cf \autoref{img:plan_pickandplace}), sera utilisé pour le déplacement des microcapsules.
+    \item le repère \og{}repPickAndPlace\fg{} (\cf \autoref{img:plan_pickandplace}), sera utilisé pour le déplacement des \glspl{microcapsule}.
 \end{itemize}
 \begin{figure}[H]
     \centering
