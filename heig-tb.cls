@@ -224,7 +224,8 @@
   backref=true,
   backend=biber,
   style=authoryear,
-  sorting=ynt
+  sorting=ynt,
+  maxnames=3
   ]{biblatex}
 
 \RequirePackage[
@@ -253,7 +254,7 @@
 \RequirePackage{csquotes}
 \RequirePackage{multirow}
 \RequirePackage{rotating}
-\RequirePackage{lscape}
+\RequirePackage{pdflscape}
 
 \usetikzlibrary{babel}
 \usemintedstyle{colorful}

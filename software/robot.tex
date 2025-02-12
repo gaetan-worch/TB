@@ -1,7 +1,7 @@
 \section{Robot}
 
 \subsection{Objectif}
-Le robot doit manipuler les \glspl{microcapsule} en effectuant des tâches de \textit{pick and place} depuis leur zone de stockage jusqu'aux réacteurs. Il doit également être capable de manipuler des plaques de \glspl{microcapsule} et de \og{}Para-dox\fg{}.
+Le robot doit manipuler les \glspl{microcapsule} en effectuant des tâches de \textit{pick and place} depuis leur zone de stockage jusqu'aux réacteurs. Il doit également être capable de manipuler des plaques de \glspl{microcapsule} et de \gls{paradox}.
 
 \subsection{Contraintes}
 \begin{enumerate}
@@ -19,14 +19,36 @@ La programmation est effectuée en deux parties :
 \subsection{Outils}
 Les outils nécessaires pour réaliser la manipulation sont :
 \begin{itemize}
-    \item une pince pour saisir les \textit{well plate} et les plaques \og{}Para-dox\fg{};
-    \item un module pour l'aspiration des \glspl{microcapsule}.
+    \item une pince pour saisir les \glspl{wellplate} et les plaques \glspl{paradox} (cf. \autoref{img:pince});
+    \item un module pour l'aspiration des \glspl{microcapsule} (cf. \autoref{img:module_aspiration}).
 \end{itemize}
-Une pointe a également été fabriquée, pour faciliter la programmation des différents repères nécessaires.
-\textcolor{red}{Ajout de détaille sur le matériel}
+Une pointe (cf. \autoref{img:pointe}) a également été fabriquée, pour faciliter la programmation des différents repères nécessaires.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=\linewidth]{assets/figures/pointe.jpeg}
+        \caption{Pointe utilisée pour faire les repères du robot}
+        \label{img:pointe}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/figures/pince.jpeg}
+        \caption{Pince pour saisir les \glspl{wellplate} et les \glspl{paradox}}
+        \label{img:pince}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{assets/figures/module_aspiration.jpeg}
+        \caption{Module d'aspiration des \glspl{microcapsule}}
+        \label{img:module_aspiration}
+    \end{subfigure}
+    \vfill
+\end{figure}
 \subsection{Sécurité}
 \subsubsection*{Limites de sécurité}
-Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites des sécurités sont nécessaires (une limite par porte de la \textit{glove box}).
+Les robots d'Universal Robot permettent de configurer des plans de sécurité, qui ne seront pas franchissables par le TCP du robot. Dans ce cas, deux limites de sécurité sont nécessaires (une limite par porte de la \textit{glove box}).
 Pour définir ces limites, il faut :
 \begin{enumerate}
     \item Définir un point en mettant l'outil perpendiculaire au plan souhaité.
